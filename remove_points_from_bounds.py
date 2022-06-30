@@ -28,11 +28,11 @@ pcd=pv.PolyData(u)
 pcd_b=pv.PolyData(arr_b_sorted)
 p__.add_mesh(pcd)
 p__.add_mesh(pcd_b,color="red")
-
-#<------------------------------------------KNN-OF-SKLEAN------------------------------------------------------->
-
-#<-----------------------------------------Iteration___1___------------------------------------------------------->
-
+#
+# #<------------------------------------------KNN-OF-SKLEAN------------------------------------------------------->
+#
+# #<-----------------------------------------Iteration___1___------------------------------------------------------->
+#
 all_data_set=total_arr
 neigh = NearestNeighbors(n_neighbors=5)
 neigh.fit(all_data_set)
@@ -128,10 +128,10 @@ def display_inlier_outlier(cloud, ind):
 index_to_remove = np.asarray(points_to_remove)
 voxel_down_pcd=o3d.geometry.PointCloud()
 arr_clean = np.delete(total_arr, index_to_remove, axis=0)
-
+#
 voxel_down_pcd.points=o3d.utility.Vector3dVector(arr_clean)
-
-
+#
+#
 cl, ind = voxel_down_pcd.remove_radius_outlier(nb_points=10, radius=0.4)
 display_inlier_outlier(voxel_down_pcd, ind)
 pcd_clean=pv.PolyData(arr_clean)
