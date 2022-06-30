@@ -21,7 +21,8 @@ def add_lines_in_the_boundary(points_to_add, numOFlines):
     lines_to_add = []
     half = int(points_to_add.shape[0] / 2)
     j = 0
-    for index in range(half - 1):
+    # for index in range(half - 1):
+    for index in range(90):
         if (max_index + index < points_to_add.shape[0] - 1):
             line = pv.Line(pointa=points_to_add[max_index - index], pointb=points_to_add[max_index + index],
                            resolution=numOFlines)
