@@ -13,8 +13,8 @@ from points_addition import add_lines_in_the_boundary
 
 toot_t=pv.read("tooth_5jo.stl")
 data=np.asarray(toot_t.extract_feature_edges(boundary_edges=True, feature_edges=False, manifold_edges=False).points)#
-data=get_sorted_arr(data,0)
-data=add_lines_in_the_boundary(data,1)
+# data=get_sorted_arr(data,0)
+# data=add_lines_in_the_boundary(data,1)
 x = data[:,0]
 y = data[:,1]
 z = data[:,2]
@@ -27,29 +27,35 @@ y = np.array(y)
 z = np.array(z)
 
 import scipy as sp
-import scipy.interpolate
+from scipy.interpolate import RBFInterpolator
 from mpl_toolkits.mplot3d import Axes3D
 
-spline = sp.interpolate.Rbf(x,y,z,function='multiquadric',smooth=0,epsilon=1)
-
+# spline = sp.interpolate.Rbf(x,y,z,function='multiquadric',smooth=1,epsilon=1)
+spline = sp.interpolate.RBFInterpolator(data,z)
 x_grid = np.linspace(min(x),max(x), len(x))
 y_grid = np.linspace(min(y),max(y), len(y))
 B1, B2= np.meshgrid(x_grid, y_grid, indexing='xy')
-
-Z = spline(B1,B2)
-fig = plt.figure(figsize=(15,6))
-ax = Axes3D(fig)
-ax.plot_wireframe(B1, B2, Z)
-ax.plot_surface(B1, B2, Z,alpha=0.1)
-ax.scatter3D(x,y,z, c='r')
+#
+ygrid = spline.reshape(50, 50)
+fig, ax = plt.subplots()
+ax.pcolormesh(x_grid, y_grid, vmin=-0.25, vmax=0.25, shading='gouraud')
+p = ax.scatter()
+fig.colorbar(p)
 plt.show()
-#
-#
-#
-#
-#
-#
-# # Make a PyVista/VTK mesh
+# Z = spline(B1,B2)
+# fig = plt.figure(figsize=(15,6))
+# ax = Axes3D(fig)
+# ax.plot_wireframe(B1, B2, Z)
+# ax.plot_surface(B1, B2, Z,alpha=0.1)
+# ax.scatter3D(x,y,z, c='r')
+# plt.show()
+# #
+# #
+# #
+# #
+# #
+# #
+# # # Make a PyVista/VTK mesh
 # surface = pv.StructuredGrid(B1, B2, Z)
 #
 # # Plot it!
@@ -65,7 +71,7 @@ plt.show()
 # p.add_mesh(toot_c)
 # p.add_mesh(clipped)
 # p.show()
-#
+# #
 # mesh =pv.PolyData(np.asarray(all_tooth.points),np.asarray(all_tooth.cells))
 # mesh.save("o.stl")
 #
