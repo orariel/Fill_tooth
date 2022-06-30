@@ -30,25 +30,20 @@ import scipy as sp
 from scipy.interpolate import RBFInterpolator
 from mpl_toolkits.mplot3d import Axes3D
 
-# spline = sp.interpolate.Rbf(x,y,z,function='multiquadric',smooth=1,epsilon=1)
-spline = sp.interpolate.RBFInterpolator(data,z)
+spline = sp.interpolate.Rbf(x,y,z,function='multiquadric',smooth=1,epsilon=1)
+# spline = sp.interpolate.RBFInterpolator(data,z)
 x_grid = np.linspace(min(x),max(x), len(x))
 y_grid = np.linspace(min(y),max(y), len(y))
 B1, B2= np.meshgrid(x_grid, y_grid, indexing='xy')
 #
-ygrid = spline.reshape(50, 50)
-fig, ax = plt.subplots()
-ax.pcolormesh(x_grid, y_grid, vmin=-0.25, vmax=0.25, shading='gouraud')
-p = ax.scatter()
-fig.colorbar(p)
+
+Z = spline(B1,B2)
+fig = plt.figure(figsize=(15,6))
+ax = Axes3D(fig)
+ax.plot_wireframe(B1, B2, Z)
+ax.plot_surface(B1, B2, Z,alpha=0.1)
+ax.scatter3D(x,y,z, c='r')
 plt.show()
-# Z = spline(B1,B2)
-# fig = plt.figure(figsize=(15,6))
-# ax = Axes3D(fig)
-# ax.plot_wireframe(B1, B2, Z)
-# ax.plot_surface(B1, B2, Z,alpha=0.1)
-# ax.scatter3D(x,y,z, c='r')
-# plt.show()
 # #
 # #
 # #
