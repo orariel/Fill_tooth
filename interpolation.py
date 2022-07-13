@@ -9,7 +9,7 @@ from sklearn.neighbors import NearestNeighbors
 
 def get_curve_interpolation(tooth_str):
 
-    toot_t=pv.read(tooth_str+".stl").subdivide(2,"loop")
+    toot_t=pv.read(tooth_str+".stl").subdivide(1,"loop")
     data_b=toot_t.extract_feature_edges(boundary_edges=True, feature_edges=False, manifold_edges=False)
     arr_b=np.asarray(toot_t.extract_feature_edges(boundary_edges=True, feature_edges=False, manifold_edges=False).points)
     arr_b=get_sorted_arr(arr_b,0)

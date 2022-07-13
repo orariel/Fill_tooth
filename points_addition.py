@@ -17,12 +17,12 @@ def add_points_between_the_boundary(order_list, numOFpoints):
 
 
 def add_lines_in_the_boundary(points_to_add, numOFlines):
-    max_index = np.argmax(points_to_add[:, 2], axis=0)
+    # max_index = np.argmax(points_to_add[:, 2], axis=0)
     lines_to_add = []
     half = int(points_to_add.shape[0] / 2)
     j = 0
     # for index in range(half - 1):
-    for index in range(90):
+    for index in range(half-1):
         if (max_index + index < points_to_add.shape[0] - 1):
             line = pv.Line(pointa=points_to_add[max_index - index], pointb=points_to_add[max_index + index],
                            resolution=numOFlines)
