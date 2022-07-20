@@ -47,32 +47,33 @@ from sklearn.neighbors import NearestNeighbors
 # p.show()
 p=pv.Plotter()
 gum=pv.read("tooth_f_14.stl")
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_0.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_1.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_2.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_3.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_4.stl"))
-p.add_mesh(gum)
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_5.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_6.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_7.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_8.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_9.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_10.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_11.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_12.stl"))
-# p.add_mesh(pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_13.stl"))
+t_0=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_0.stl")
+t_1=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_1.stl")
+t_2=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_2.stl")
+t_3=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_3.stl")
+t_4=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_4.stl")
+t_5=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_5.stl")
+t_6=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_6.stl")
+t_7=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_7.stl")
+t_8=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_8.stl")
+t_9=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_9.stl")
+t_10=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_10.stl")
+t_11=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_11.stl")
+t_12=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_12.stl")
+t_13=pv.read("C:/Users/orari/PycharmProjects/Fill_Tooth/complete_teeth/full_tooth_13.stl")
 
+mesh=t_0.merge([t_0,t_1,t_2,t_3,t_4,t_5,t_6,t_7,t_8,t_9,t_10,t_11,t_12,t_13])
+
+mesh.plot()
 p.export_gltf("test.gltf")
 p.show()
 
-arr_b=pv.read("tooth_f_1.stl").decimate(0.95)
-arr_b.save("d_tooth_f_1.stl")
+data_b=pv.read("tooth_f_10.stl").decimate(0.95)
+data_b.save("d_tooth_f_10.stl")
 
+data_b_2 = data_b.connectivity(largest=False)
 
-arr_b=np.asarray(arr_b.points)
-arr=get_sorted_arr(arr_b,0)
-
+data_b_2.plot()
 
 # make the data
 

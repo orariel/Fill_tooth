@@ -18,7 +18,7 @@ from pymeshfix._meshfix import PyTMesh
 
 # <-----------------------------load tooth and cut tooth gum---------------------------->
 
-tooth_num=2
+tooth_num=8
 gum=pv.read("tooth_f_14.stl")
 surface=gum
 tooth=pv.read("d_tooth_f_"+str(tooth_num)+".stl")
@@ -250,7 +250,7 @@ else:
     p.add_mesh(tooth)
     p.add_mesh(pcd, color="red")
     p.show()
-    circle_l = pv.Sphere(radius=5 * 0.4, theta_resolution=20, phi_resolution=15).translate((pcd.center), inplace=False)
+    circle_l = pv.Sphere(radius=5 * 0.2, theta_resolution=20, phi_resolution=15).translate((pcd.center), inplace=False)
     circle_l = circle_l.project_points_to_plane()
     circle_l = circle_l.translate((0, 0, -6 * 0.8), inplace=False)
     circle_p = np.asarray(circle_l.points)
